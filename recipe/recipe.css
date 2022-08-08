@@ -3,12 +3,79 @@
 }
 
 p {
-  color: blue;
+  color: black;
 }
 body {
-  background-color: #aac68c;
+  background-color: #99c27e;
 }
-<h1 > h1 {
+h1 {
   background-color: white;
   border: solid;
+}
+
+img {
+  width: 100%;
+}
+
+@media (max-width: 915px) {
+  img {
+    width: 32%;
+  }
+}
+
+@media (min-width: 1081px) {
+  body {
+    background-color: rosybrown;
+  }
+}
+
+.title1 {
+  background-color: #f5b642;
+  color: white;
+  border: black;
+}
+
+.topnav {
+  background-color: #f5b642;
+  overflow: hidden;
+}
+
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.intro {
+  padding: 20px 0;
+  border: 3px solid green;
+  text-align: center;
+}
+
+.button1 {
+  background-color: bisque;
+  text-align: center;
+}
+
+.button2 {
+  background-color: bisque;
+  text-align: center;
+}
+
+.button3 {
+  background-color: bisque;
+  text-align: center;
+}
+
+div {
+  text-align: center;
 }
