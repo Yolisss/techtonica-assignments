@@ -1,0 +1,26 @@
+h1 {
+  text-align: center;
+  color: teal;
+  padding: 40px;
+}
+
+.intro-paragraph {
+  text-align: center;
+  color: teal;
+  padding: 40px;
+}
+
+.intro-buttons {
+  text-align: center;
+}
+
+.social-icon {
+  color: pink;
+  transition: color 0.2s;
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+.social-icon:hover {
+  color: darkmagenta;
+}
