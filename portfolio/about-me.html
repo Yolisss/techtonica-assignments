@@ -8,43 +8,90 @@
      <link rel="stylesheet" type="text/css" href="self-project.css" />
 </head>
 <body>
+
+<!-- Use any element to open the sidenav -->
+<div id="nav-button">
+<button id= "nav-button2" onclick="openNav()">Nav</button>
+</div>
+
+
 <h1 class="intro-paragraph2">Hello Beautiful People!</h1>
 
 
-<img src="Selfie-for-Techtonica.jpeg" alt="a wild Yolis">
 
-<p class="intro-paragraph2">My name is Yolisma. I'm a first generation Latina, born and raised in California. I am currently a Software Engineer in-training at Techtonica. My main goal is to inspire the Latinx community to take the steps to get involed in the tech industry even if it seems intimidating. Before Techtonica, my main background was Medical Office Administration. </p>
+<div id="selfie">
+<img alternative test= "A photo of Yolisma Zacarias. A female latina wearing a burgandy shirt. Looking straight at the camera" class="selfie" src="https://media-exp1.licdn.com/dms/image/C5622AQEuwrp9IVIUWA/feedshare-shrink_800/0/1659708049665?e=1663200000&v=beta&t=FcRPKDPzexWk8uEDLpM3HDsTD54UztK0RNnndz1PjEM">
+</div>
 
+<div class="intro-paragraph2">
+<p >My name is Yolisma. I'm a first generation Latina, born and raised in California. I am currently a Software Engineer in-training at Techtonica. Before Techtonica, my main background was Medical Office Administration. My main goal is to inspire the Latinx community to take the steps to get involed in the tech industry even if it seems intimidating.</p>
+</div>
 
 <form>
-        <p class="contact-info">If you're interested in teaming up with me for some coding, have any questions or simply want to talk about cats - you can reach me at catandcloud@gmail.com</p>
+    <div class="contact-info">
+        <p>If you're interested in teaming up with me for some coding, have any questions or simply want to talk about cats - you can reach me at catandcloud@gmail.com</p>
+        </div>
+      <div>  
+        <p> 
         <label>Name
-       <input type="text name="name">
+       <input type="text name="name1">
        </label>
+      </p>
+      <p>
        <label>Email
        <input type="email" name="email">
         </label>
-
-        <button>Sign up</button>
-
+        </p>
+        <p>
+         <label>Phone Number
+       <input type="phone number" name="phone number">
+        </label>
+        </p>
+        <p> 
+        <label>Address
+       <input type="address" name="address">
+        </label>
+        <button>Submit</button>
+        </p>
+      </div>
     </form>
 
-<br> 
+<br>
+<div id="social-icon-container">
+    
      <a class="social-icon" href="https://twitter.com/Yolissss_" target="_blank">
         <ion-icon name="logo-twitter"></ion-icon>
      </a>
+    
+    
       <a class="social-icon" href="https://instagram.com/Yolissss_" target="_blank">
         <ion-icon name="logo-instagram"></ion-icon>
      </a>
+     
+     
       <a class="social-icon" href="https://linkedin.com/in/yolisma-zacarias4" target="_blank">
         <ion-icon name="logo-linkedin"></ion-icon>
      </a>
        <a class="social-icon" href="https://github.com/Yolisss" target="_blank">
        <ion-icon name="logo-github"></ion-icon></ion-icon>
      </a>
-     
+     </div>
+
+
      <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
      <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+
+     <div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a href="file:///Users/yolismazacarias/Desktop/VSP%20Projects/Techtonica-Assignments/portfolio/self-project.html">Home</a>
+  <a href="#">Projects</a>
+  <a href="#">Clients</a>
+</div>
+
+
+
+
 
 
     <script src="self-project.js"></script>
