@@ -1,15 +1,15 @@
 h1 {
   text-align: center;
-  color: teal;
+  color: black;
   padding: 40px;
-  font-size: 60px;
+  font-size: 40px;
 }
 
 .intro-paragraph {
   text-align: center;
-  color: teal;
-  padding: 0px;
-  font-size: 30px;
+  color: black;
+  padding: 0px 30px 60px 30px;
+  font-size: 20px;
 }
 
 .intro-buttons {
@@ -17,7 +17,7 @@ h1 {
 }
 
 .social-icon {
-  color: #3a77b5;
+  color: white;
   transition: color 0.2s;
   text-decoration: none;
   margin: 0 10px;
@@ -26,11 +26,14 @@ h1 {
 }
 
 .social-icon:hover {
-  color: darkmagenta;
+  color: #4e7956;
 }
 
 body {
-  background-color: #d4ac79;
+  background-image: url("https://images.unsplash.com/photo-1588745899348-62b0df3e63cd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MXw5NzUwNDgxfHxlbnwwfHx8fA%3D%3D&w=1000&q=80");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: white;
 }
 
 .contact-info {
@@ -51,13 +54,13 @@ img {
 
 @media (min-width: 1081px) {
   body {
-    background-color: #3a77b5;
+    background-color: white;
   }
 }
 
 @media (min-width: 1200px) {
   body {
-    background-color: #89b8e8;
+    background-color: #8fab94;
   }
 }
 
@@ -69,7 +72,7 @@ img {
   z-index: 1; /* Stay on top */
   top: 0; /* Stay at the top */
   left: 0;
-  background-color: #111; /* Black*/
+  background-color: #8fab94; /* Black*/
   overflow-x: hidden; /* Disable horizontal scroll */
   padding-top: 60px; /* Place content 60px from the top */
   transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
@@ -80,7 +83,7 @@ img {
   padding: 8px 8px 8px 32px;
   text-decoration: none;
   font-size: 25px;
-  color: #818181;
+  color: black;
   display: block;
   transition: 0.3s;
 }
@@ -112,6 +115,31 @@ img {
   text-align: center;
 }
 
+#nav-buttons-homepage {
+  text-align: center;
+  font-size: 5x;
+}
+
+#selfie {
+  text-align: center;
+  width: 90%;
+  padding: 50px 100px 50px 100px;
+}
+
+.intro-paragraph2 {
+  text-align: center;
+  padding: 50px 150px 20px 150px;
+}
+
+.contact-info {
+  text-align: center;
+  justify-content: space-between;
+}
+
+.user-info {
+  text-align: center;
+  padding: 50px 50px 60px 50px;
+}
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {
   .sidenav {
