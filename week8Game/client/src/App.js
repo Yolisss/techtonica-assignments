@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import "./App.css";
 import Quiz from "./components/quiz";
 
@@ -7,6 +6,7 @@ function App() {
   return (
     <div className="App">
       <Quiz />
+      <button>Restart Quiz</button>
     </div>
   );
 }
