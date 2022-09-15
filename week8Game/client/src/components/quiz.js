@@ -10,7 +10,7 @@ import { useState, useEffect } from "react";
 
 //data is an obj contains response code and results but we only want results
 //that's why we do data.results
-
+//[] initial state
 function Quiz() {
   const [questions, setQuestions] = useState([]);
   const loadData = () => {
@@ -22,8 +22,10 @@ function Quiz() {
       });
   };
 
-  //it'll let you know when and how many time to upload data
-  //[] state of useEffect
+  //it'll let you know when and how many times to upload data
+  //28: part of code that you want to run sometimes; doesn't run all the time and
+  //[]: dependency array => code will run once
+  //29:loadData: data will be loaded from the server
   useEffect(() => {
     loadData();
   }, []);
@@ -40,6 +42,7 @@ function Quiz() {
 //index is to assign a unique key to each item with an a .map function 
 key={} means each element has a unique ID*/}
 
+      {/* //mapping over all the questions from the object */}
       {questions.map((question, index) => {
         return (
           <Question
@@ -50,6 +53,8 @@ key={} means each element has a unique ID*/}
           />
         );
       })}
+
+      <button>Submit</button>
       {/* // questionText={question}
     // correctText={correctAnswer}
     // incorrectText={incorrectAnswers} */}
