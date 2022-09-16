@@ -14,12 +14,22 @@ import Answer from "./answer.js";
 function Question({ questionText, correctText, incorrectText }) {
   const allAnswers = [correctText, ...incorrectText];
 
-  const animal = () => {};
+  function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      const temp = array[i];
+      array[i] = array[j];
+      array[j] = temp;
+    }
+    return array;
+  }
+
+  // const animal = () => {};
 
   return (
     <div>
       {questionText}
-      {allAnswers.map((ans, index) => {
+      {shuffleArray(allAnswers).map((ans, index) => {
         return (
           <Answer answer={ans} correctAnswer={correctText} key={index} />
 
