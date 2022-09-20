@@ -123,6 +123,7 @@ const Events = () => {
               }
             />
             <br></br>
+            //dispatch is the action; function that we're calling
             <label>Date: </label>
             <br></br>
             <input
