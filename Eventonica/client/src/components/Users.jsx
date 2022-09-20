@@ -1,4 +1,5 @@
 import { useState } from "react";
+import DeleteUser from "./DeleteUser";
 
 const Users = () => {
   const marlin = { name: "Marlin", email: "marlin@gmail.com", id: "1" };
@@ -18,12 +19,22 @@ const Users = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const newUser = { id: id, name: name, email: email };
+
+    //setUse contains list of users, newUser contains new user that's inputted in the list
     setUsers([...users, newUser]);
     //reset input field
     setName("");
     setId("");
     setEmail("");
   };
+
+  //part a
+  const deleteUser = (deleteId) => {
+    const newUsers = users.filter((i) => i.id !== deleteId);
+    //updates the user list
+    setUsers(newUsers);
+  };
+
   return (
     <section className="user-management">
       <h2>User Management</h2>
@@ -69,16 +80,7 @@ const Users = () => {
         </form>
       </div>
 
-      <div>
-        <h3>Delete User</h3>
-        <form id="delete-user" action="#">
-          <fieldset>
-            <label>User ID</label>
-            <input type="text" id="delete-user-id" />
-          </fieldset>
-          <input type="submit" />
-        </form>
-      </div>
+      <DeleteUser deleteUser={deleteUser} />
     </section>
   );
 };
