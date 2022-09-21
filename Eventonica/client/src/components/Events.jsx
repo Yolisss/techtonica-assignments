@@ -97,8 +97,8 @@ const Events = () => {
             );
           })}
         </ul>
-        //type means type of action //payload "the amount we pass in" basically
-        value //triggers action for value to go to reducer
+        {/* //type means type of action //payload "the amount we pass in" basically
+        value //triggers action for value to go to reducer */}
         <h3>Add Event</h3>
         <form id="add-event" action="#" onSubmit={handleSubmit}>
           <fieldset>
@@ -118,8 +118,8 @@ const Events = () => {
               }
             />
             <br></br>
-            //whenever we want to update the state we have to trigger the
-            dispatch function //to trigger the action object
+            {/* //whenever we want to update the state we have to trigger the
+            dispatch function //to trigger the action object */}
             <label>ID: </label>
             <br></br>
             <input
@@ -135,7 +135,7 @@ const Events = () => {
               }
             />
             <br></br>
-            //dispatch is the action; function that we're calling
+            {/* //dispatch is the action; function that we're calling */}
             <label>Date: </label>
             <br></br>
             <input

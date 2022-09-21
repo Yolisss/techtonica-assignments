@@ -7,25 +7,25 @@ import db from "../db/db-connection.js";
 
 router.get("/", async function (req, res, next) {
   try {
-    const users = await db.any("SELECT * FROM users", [true]);
-    res.send(users);
+    const events = await db.any("SELECT * FROM events", [true]);
+    res.send(events);
   } catch (e) {
     return res.status(400).json({ e });
   }
 });
-
-/* post request goes here */
 /* Add users listing. */
 router.post("/", async (req, res) => {
-  const user = {
+  const events = {
     name: req.body.name,
-    email: req.body.email,
+    description: req.body.description,
+    category: req.body.category,
+    date: req.body.date,
   };
-  console.log(user);
+  console.log(events);
   try {
     const createdUser = await db.one(
       "INSERT INTO users(name, email) VALUES($1, $2) RETURNING *",
-      [user.name, user.email]
+      [events.name, events.email]
     );
     console.log(createdUser);
     res.send(createdUser);
@@ -33,7 +33,8 @@ router.post("/", async (req, res) => {
     return res.status(400).json({ e });
   }
 });
-/* delete request goes here  */
+/* Delete users listing. */
+
 //Parameterized queries use placeholders instead of directly writing the
 //values into the statements. Parameterized queries increase security and performance.
 

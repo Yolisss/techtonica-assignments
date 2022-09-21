@@ -2,14 +2,15 @@ import { useState } from "react";
 
 //pass the function deleteUser as a prop
 
-const DeleteUser = ({ deleteUser }) => {
+const DeleteUser = ({ deleteUserCallback }) => {
   //stores the userID that will be deleted
   const [deleteId, setDeleteId] = useState("");
 
   //part b from users.jsx
+  //deleteUserCallback(deleteId) grabbing the new value
   const handleDelete = (e) => {
     e.preventDefault();
-    deleteUser(deleteId);
+    deleteUserCallback(deleteId);
   };
   return (
     <div>

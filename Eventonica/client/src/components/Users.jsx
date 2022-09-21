@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import DeleteUser from "./DeleteUser";
 
 const Users = () => {
@@ -16,6 +16,35 @@ const Users = () => {
   //...users is calling all the prev users in list
   //newUser is the new data
 
+  // client/src/components/Users.jsx
+  const getUsers = async () => {
+    const response = await fetch("http://localhost:4000/users");
+    const user = await response.json();
+    setUsers(user);
+  };
+
+  useEffect(() => {
+    getUsers();
+  }, []);
+
+  // Add new user
+  const handleSubmit1 = async (e) => {
+    e.preventDefault();
+    const newUser = { id: "", name: "", email: "" };
+
+    const rawResponse = await fetch("http://localhost:4000/users", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newUser),
+    });
+    const content = await rawResponse.json();
+
+    setUsers([...users, content]);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const newUser = { id: id, name: name, email: email };
@@ -29,10 +58,11 @@ const Users = () => {
   };
 
   //part a from deleteUser.jsx
+  //filter to exclude delete, setUsers called to use new list
   const deleteUser = (deleteId) => {
-    const newUsers = users.filter((i) => i.id !== deleteId);
+    const filterUsers = users.filter((i) => i.id !== deleteId);
     //updates the user list
-    setUsers(newUsers);
+    setUsers(filterUsers);
   };
 
   return (
@@ -79,8 +109,9 @@ const Users = () => {
           <input type="submit" value="Add" onSubmit={handleSubmit} />
         </form>
       </div>
-      //DeleteUser COmponent added to Users Component. //deleteUser would be the
-      props in this situation to use the callback function
+      {/* //DeleteUser COmponent added to Users Component. 
+      //deleteUser would be the
+      props in this situation to use the callback function */}
       <DeleteUser deleteUser={deleteUser} />
     </section>
   );
