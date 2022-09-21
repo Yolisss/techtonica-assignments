@@ -26,6 +26,10 @@ const event3 = {
   category: "Education",
 };
 
+//we're telling the reducer to interpret the action from dispatch
+// and perform what is needed from that state
+// action is the dispatch; the action performed
+
 const reducer = (state, action) => {
   console.log(action, "this is the action");
   switch (action.type) {
@@ -54,7 +58,8 @@ const Events = () => {
   //state for events
   const [events, setEvents] = useState([event1, event2, event3]);
 
-  //initialistate of the form will be empty
+  //const initialState is associated with useReducer
+  //down below(const [state, dispatch] = useReducer(reducer, initialState); )
   const initialState = {
     id: "",
     name: "",
@@ -63,6 +68,10 @@ const Events = () => {
     category: "",
   };
 
+  //state is the current state
+  //dispatch is the pigeon; dispatch the action to the reducer
+  //reducer is the bank
+  //initial state is starting amount 500
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const handleSubmit = (e) => {
@@ -88,7 +97,8 @@ const Events = () => {
             );
           })}
         </ul>
-
+        //type means type of action //payload "the amount we pass in" basically
+        value //triggers action for value to go to reducer
         <h3>Add Event</h3>
         <form id="add-event" action="#" onSubmit={handleSubmit}>
           <fieldset>
@@ -108,6 +118,8 @@ const Events = () => {
               }
             />
             <br></br>
+            //whenever we want to update the state we have to trigger the
+            dispatch function //to trigger the action object
             <label>ID: </label>
             <br></br>
             <input

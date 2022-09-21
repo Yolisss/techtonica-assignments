@@ -22,13 +22,13 @@ const Users = () => {
 
     //setUse contains list of users, newUser contains new user that's inputted in the list
     setUsers([...users, newUser]);
-    //reset input field
+    //reset after submit
     setName("");
     setId("");
     setEmail("");
   };
 
-  //part a
+  //part a from deleteUser.jsx
   const deleteUser = (deleteId) => {
     const newUsers = users.filter((i) => i.id !== deleteId);
     //updates the user list
@@ -38,7 +38,6 @@ const Users = () => {
   return (
     <section className="user-management">
       <h2>User Management</h2>
-
       <ul id="users-list">
         {users.map((user, index) => {
           return (
@@ -48,7 +47,6 @@ const Users = () => {
           );
         })}
       </ul>
-
       <div>
         <h3>Add User</h3>
         <form id="add-user" onSubmit={handleSubmit}>
@@ -72,6 +70,8 @@ const Users = () => {
               type="text"
               id="add-user-email"
               value={email}
+              //whenever we pass an event, we are pulling that value from it
+              //target:{value} is retrieving value of variable input by client
               onChange={(e) => setEmail(e.target.value)}
             />
           </fieldset>
@@ -79,7 +79,8 @@ const Users = () => {
           <input type="submit" value="Add" onSubmit={handleSubmit} />
         </form>
       </div>
-
+      //DeleteUser COmponent added to Users Component. //deleteUser would be the
+      props in this situation to use the callback function
       <DeleteUser deleteUser={deleteUser} />
     </section>
   );

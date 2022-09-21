@@ -7,14 +7,14 @@ const DeleteUser = ({ deleteUser }) => {
   const [deleteId, setDeleteId] = useState("");
 
   //part b from users.jsx
-  const handleSubmit = (e) => {
+  const handleDelete = (e) => {
     e.preventDefault();
     deleteUser(deleteId);
   };
   return (
     <div>
       <h3>Delete User</h3>
-      <form id="delete-user" action="#" onSubmit={handleSubmit}>
+      <form id="delete-user" action="#" onSubmit={handleDelete}>
         <fieldset>
           <label>User ID</label>
           <input
