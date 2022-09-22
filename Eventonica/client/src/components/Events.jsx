@@ -60,8 +60,8 @@ const Events = () => {
 
   const getEvents = async () => {
     const response = await fetch("http://localhost:4000/events");
-    const event = await response.json();
-    setEvents(event);
+    const events = await response.json();
+    setEvents(events);
   };
 
   useEffect(() => {

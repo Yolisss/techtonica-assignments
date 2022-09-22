@@ -20,15 +20,13 @@ router.post("/", async (req, res) => {
   const user = {
     name: req.body.name,
     id: req.body.id,
-    date: req.body.date,
-    description: req.body.description,
-    category: req.body.category,
+    email: req.body.email,
   };
   console.log(user);
   try {
     const createdUser = await db.one(
       "INSERT INTO users(name, email) VALUES($1, $2) RETURNING *",
-      [user.name, user.id]
+      [user.name, user.email]
     );
     console.log(createdUser);
     res.send(createdUser);

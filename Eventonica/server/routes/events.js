@@ -26,12 +26,13 @@ router.post("/", async (req, res) => {
 
   try {
     const createdEvents = await db.one(
-      "INSERT INTO users(name, id, date, description, category) VALUES($1, $2, $3, $4, $5) RETURNING *",
+      "INSERT INTO events(name, id, date, description, category) VALUES($1, $2, $3, $4, $5) RETURNING *",
       [events.name, events.id, events.date, events.description, events.category]
     );
     console.log(req.body);
     res.send(createdEvents);
   } catch (e) {
+    console.log(e);
     return res.status(400).json({ e });
   }
 });
@@ -44,7 +45,7 @@ router.delete("/:id", async (req, res) => {
   // : acts as a placeholder
   const eventsId = req.params.id;
   try {
-    await db.none("DELETE FROM users WHERE id=$1", [eventsId]);
+    await db.none("DELETE FROM events WHERE id=$1", [eventsId]);
     res.send({ status: "success" });
   } catch (e) {
     return res.status(400).json({ e });

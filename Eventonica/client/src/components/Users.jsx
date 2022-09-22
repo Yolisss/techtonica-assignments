@@ -8,6 +8,8 @@ const Users = () => {
 
   //useState for users
   const [users, setUsers] = useState([marlin, nemo, dory]);
+
+  //useState for our working components
   const [name, setName] = useState("");
   const [id, setId] = useState("");
   const [email, setEmail] = useState("");
@@ -28,28 +30,12 @@ const Users = () => {
   }, []);
 
   // Add new user
-  const handleDeleteUsers = async (e) => {
+  // Add new user
+  const handleAddUser = async (e) => {
     e.preventDefault();
-    const newUser = { id: id, name: name, email: email };
+    const newUser = { id, name, email };
 
-    const rawResponse = await fetch("http://localhost:4000/users", {
-      method: "DELETE",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newUser),
-    });
-    const content = await rawResponse.json();
-
-    setUsers([...users, content]);
-  };
-
-  const handleSubmit1 = async (e) => {
-    e.preventDefault();
-    const newUser = { id: "", name: "", email: "" };
-
-    const rawResponse = await fetch("http://localhost:4000/users", {
+    const response = await fetch("http://localhost:4000/users", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -57,7 +43,27 @@ const Users = () => {
       },
       body: JSON.stringify(newUser),
     });
-    const content = await rawResponse.json();
+    const content = await response.json();
+
+    setUsers([...users, content]);
+    setName("");
+    setEmail("");
+    setId("");
+  };
+
+  const handleDeleteUsers = async (e) => {
+    e.preventDefault();
+    const newUser = { id, name, email };
+
+    const response = await fetch("http://localhost:4000/users", {
+      method: "DELETE",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newUser),
+    });
+    const content = await response.json();
 
     setUsers([...users, content]);
   };
@@ -66,8 +72,8 @@ const Users = () => {
     e.preventDefault();
     const newUser = { id: id, name: name, email: email };
 
-    //setUse contains list of users, newUser contains new user that's inputted in the list
     setUsers([...users, newUser]);
+
     //reset after submit
     setName("");
     setId("");
@@ -77,9 +83,9 @@ const Users = () => {
   //part a from deleteUser.jsx
   //filter to exclude delete, setUsers called to use new list
   const deleteUser = (deleteId) => {
-    const filterUsers = users.filter((i) => i.id !== deleteId);
+    const newUsers = users.filter((i) => i.id !== deleteId);
     //updates the user list
-    setUsers(filterUsers);
+    setUsers(newUsers);
   };
 
   return (
@@ -96,7 +102,7 @@ const Users = () => {
       </ul>
       <div>
         <h3>Add User</h3>
-        <form id="add-user" onSubmit={handleSubmit}>
+        <form id="add-user" onSubmit={handleAddUser}>
           <fieldset>
             <label>Name:</label>
             <input
@@ -123,7 +129,7 @@ const Users = () => {
             />
           </fieldset>
           {/* Add more form fields here */}
-          <input type="submit" value="Add" onSubmit={handleSubmit} />
+          <input type="submit" value="Add" />
         </form>
       </div>
       {/* //DeleteUser COmponent added to Users Component. 
@@ -133,4 +139,5 @@ const Users = () => {
     </section>
   );
 };
+
 export default Users;
