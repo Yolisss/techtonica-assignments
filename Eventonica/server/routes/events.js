@@ -16,19 +16,21 @@ router.get("/", async function (req, res, next) {
 /* Add users listing. */
 router.post("/", async (req, res) => {
   const events = {
+    id: req.body.id,
     name: req.body.name,
     description: req.body.description,
     category: req.body.category,
     date: req.body.date,
   };
   console.log(events);
+
   try {
-    const createdUser = await db.one(
-      "INSERT INTO users(name, email) VALUES($1, $2) RETURNING *",
-      [events.name, events.email]
+    const createdEvents = await db.one(
+      "INSERT INTO users(name, id, date, description, category) VALUES($1, $2, $3, $4, $5) RETURNING *",
+      [events.name, events.id, events.date, events.description, events.category]
     );
-    console.log(createdUser);
-    res.send(createdUser);
+    console.log(req.body);
+    res.send(createdEvents);
   } catch (e) {
     return res.status(400).json({ e });
   }
@@ -40,9 +42,9 @@ router.post("/", async (req, res) => {
 
 router.delete("/:id", async (req, res) => {
   // : acts as a placeholder
-  const userId = req.params.id;
+  const eventsId = req.params.id;
   try {
-    await db.none("DELETE FROM users WHERE id=$1", [userId]);
+    await db.none("DELETE FROM users WHERE id=$1", [eventsId]);
     res.send({ status: "success" });
   } catch (e) {
     return res.status(400).json({ e });

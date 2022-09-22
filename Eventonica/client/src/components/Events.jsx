@@ -1,5 +1,5 @@
 import { useReducer } from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 //mock events
 const event1 = {
@@ -56,7 +56,17 @@ const reducer = (state, action) => {
 
 const Events = () => {
   //state for events
-  const [events, setEvents] = useState([event1, event2, event3]);
+  const [events, setEvents] = useState([]);
+
+  const getEvents = async () => {
+    const response = await fetch("http://localhost:4000/events");
+    const event = await response.json();
+    setEvents(event);
+  };
+
+  useEffect(() => {
+    getEvents();
+  }, []);
 
   //const initialState is associated with useReducer
   //down below(const [state, dispatch] = useReducer(reducer, initialState); )
@@ -80,6 +90,31 @@ const Events = () => {
     setEvents([...events, state]);
   };
 
+  // Add new event
+  const handleNewEvent = async (e) => {
+    e.preventDefault();
+    const newEvent = {
+      id: state.id,
+      name: state.name,
+      description: state.description,
+      category: state.category,
+      date: state.date,
+    };
+    console.log(newEvent);
+
+    const response = await fetch("http://localhost:4000/events", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newEvent),
+    });
+    const content = await response.json();
+
+    setEvents([...events, content]);
+  };
+
   return (
     <section className="event-management">
       <h2>Event Management</h2>
@@ -100,7 +135,7 @@ const Events = () => {
         {/* //type means type of action //payload "the amount we pass in" basically
         value //triggers action for value to go to reducer */}
         <h3>Add Event</h3>
-        <form id="add-event" action="#" onSubmit={handleSubmit}>
+        <form id="add-event" action="#" onSubmit={handleNewEvent}>
           <fieldset>
             <br></br>
             <label>Name: </label>
@@ -108,7 +143,7 @@ const Events = () => {
             <input
               type="text"
               id="add-event-name"
-              placeholder="Puppy Cat"
+              placeholder="Enter name"
               value={state.name}
               onChange={(e) =>
                 dispatch({
@@ -125,7 +160,7 @@ const Events = () => {
             <input
               type="text"
               id="add-event-id"
-              placeholder="1"
+              placeholder="Enter ID"
               value={state.id}
               onChange={(e) =>
                 dispatch({
@@ -141,7 +176,7 @@ const Events = () => {
             <input
               type="text"
               id="add-event-date"
-              placeholder="02/20/2022"
+              placeholder="YYYY/MM/DD"
               value={state.date}
               onChange={(e) =>
                 dispatch({
@@ -156,7 +191,7 @@ const Events = () => {
             <input
               type="text"
               id="add-event-description"
-              placeholder="Virtual corgi meetup"
+              placeholder="Enter description"
               value={state.description}
               onChange={(e) =>
                 dispatch({
@@ -171,7 +206,7 @@ const Events = () => {
             <input
               type="text"
               id="add-event-category"
-              placeholder="Virtual corgi meetup"
+              placeholder="Enter category"
               value={state.category}
               onChange={(e) =>
                 dispatch({
