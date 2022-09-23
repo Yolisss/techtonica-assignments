@@ -25,6 +25,8 @@ const Users = () => {
   // client/src/components/Users.jsx
   //fetching from the server
   const getUsers = async () => {
+    ///localhost:4000/users contains
+    // "id:1, name: "crush", email: "crush@gmail.com"
     const response = await fetch("http://localhost:4000/users");
     const user = await response.json();
     setUsers(user);

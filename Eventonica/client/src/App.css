@@ -13,6 +13,9 @@ header img {
   height: 64px;
   margin-right: 1em;
 }
+body {
+  background-color: lightyellow;
+}
 
 main {
   display: flex;

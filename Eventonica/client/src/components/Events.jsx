@@ -1,5 +1,6 @@
 import { useReducer } from "react";
 import { useState, useEffect } from "react";
+import DeleteEvent from "./DeleteEvents";
 
 //mock events
 const event1 = {
@@ -49,6 +50,8 @@ const reducer = (state, action) => {
 
     case "editID":
       return { ...state, id: action.payload };
+    case "clearForm":
+      return { name: "", id: "", description: "", date: "", category: "" };
     default:
       return state;
   }
@@ -113,6 +116,28 @@ const Events = () => {
     const content = await response.json();
 
     setEvents([...events, content]);
+
+    dispatch({ type: "clearForm" });
+  };
+
+  const handleDeleteEvents = async (eventId) => {
+    const response = await fetch(`http://localhost:4000/events/${eventId}`, {
+      method: "DELETE",
+    });
+    await response.json();
+
+    //"basically keep everything except for the ID I'm trying to delete"
+    //originally the delete user section was not updating list of users on the page
+    //this is bc in the delete user form, the deleteID was a string line 32
+    //whereas the User.ID is an integer; line 37
+    //which caused the comparison to fail
+    //parseInt allows us to convert from string to integer
+    console.log(typeof eventId);
+    const deleteEvents = events.filter((i) => i.id !== parseInt(eventId));
+    console.log(deleteEvents);
+
+    //updating list of users
+    setEvents(deleteEvents);
   };
 
   return (
@@ -220,6 +245,7 @@ const Events = () => {
           <input type="submit" />
         </form>
       </div>
+      <DeleteEvent onDeleteEvents={handleDeleteEvents} />
     </section>
   );
 };
