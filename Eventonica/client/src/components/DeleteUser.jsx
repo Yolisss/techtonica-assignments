@@ -2,16 +2,26 @@ import { useState } from "react";
 
 //pass the function deleteUser as a prop
 
-const DeleteUser = ({ deleteUserCallback }) => {
+//from the users component, we're passing onDeleteUsers as a prop
+//by passing the function we allow it to have delete function functionality
+const DeleteUser = ({ onDeleteUsers }) => {
   //stores the userID that will be deleted
-  const [deleteId, setDeleteId] = useState("");
+  const [id, setId] = useState("");
 
   //part b from users.jsx
   //deleteUserCallback(deleteId) grabbing the new value
+
+  //in the handleDelete, we are claling the onDeleteUsers
+  //which will perform the user deletion
   const handleDelete = (e) => {
     e.preventDefault();
-    deleteUserCallback(deleteId);
+    onDeleteUsers(id);
+    setId("");
   };
+
+  //# means going back to the current page
+  //form is going to cause to reload but also pass info
+  // to exisiting page with whatever you want to do
   return (
     <div>
       <h3>Delete User</h3>
@@ -22,8 +32,8 @@ const DeleteUser = ({ deleteUserCallback }) => {
             type="number"
             min="1"
             id="delete-user-id"
-            value={deleteId}
-            onChange={(e) => setDeleteId(e.target.value)}
+            value={id}
+            onChange={(e) => setId(e.target.value)}
           />
         </fieldset>
         <input type="submit" />
