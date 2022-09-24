@@ -4,20 +4,19 @@ import { useState } from "react";
 
 //from the users component, we're passing onDeleteUsers as a prop
 //by passing the function we allow it to have delete function functionality
-const DeleteUser = ({ onDeleteUsers }) => {
+const DeleteEvent = ({ onDeleteEvents }) => {
   //stores the userID that will be deleted
-  const [id, setId] = useState("");
+  const [deleteEventId, setDeleteEventId] = useState("");
 
   //part b from users.jsx
   //deleteUserCallback(deleteId) grabbing the new value
 
   //in the handleDelete, we are claling the onDeleteUsers
   //which will perform the user deletion
-  //calling onDeleteUsers and passing id
-  const handleDelete = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    onDeleteUsers(id);
-    setId("");
+    onDeleteEvents(deleteEventId);
+    setDeleteEventId("");
   };
 
   //# means going back to the current page
@@ -25,16 +24,16 @@ const DeleteUser = ({ onDeleteUsers }) => {
   // to exisiting page with whatever you want to do
   return (
     <div>
-      <h3>Delete User</h3>
-      <form id="delete-user" action="#" onSubmit={handleDelete}>
+      <h3>Delete Event</h3>
+      <form id="delete-event" action="#" onSubmit={handleSubmit}>
         <fieldset>
-          <label>User ID</label>
+          <label>Event ID</label>
           <input
-            type="number"
+            type="text"
             min="1"
-            id="delete-user-id"
-            value={id}
-            onChange={(e) => setId(e.target.value)}
+            id="delete-event-id"
+            value={deleteEventId}
+            onChange={(e) => setDeleteEventId(e.target.value)}
           />
         </fieldset>
         <input type="submit" />
@@ -43,5 +42,4 @@ const DeleteUser = ({ onDeleteUsers }) => {
   );
 };
 
-//this is allowing for other files to import deleteUser
-export default DeleteUser;
+export default DeleteEvent;

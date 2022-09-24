@@ -37,6 +37,9 @@ const Users = () => {
   //direct child to the component
   //once react is being rendered on the screen, function will get called
   //[] will only be run once
+
+  //useEffect will have function getUsers be called once when this component
+  //mounts (when its first present in the app)
   useEffect(() => {
     getUsers();
   }, []);
@@ -74,7 +77,8 @@ const Users = () => {
 
   //created a variable and assigned it to a function
 
-  //sending a delete req for that userID
+  //sending a delete req for that userID to the server (local host)
+  //the URL contains the userId
   const handleDeleteUsers = async (userId) => {
     const response = await fetch(`http://localhost:4000/users/${userId}`, {
       method: "DELETE",
@@ -171,6 +175,8 @@ const Users = () => {
       //deleteUser would be the
       props in this situation to use the callback function */}
       {/* //passing handleDeleteUsers function to the DeleteUser component */}
+      {/* //this sets up where DeleteUser is a child component of the Users component */}
+      {/* {/* this is pass handleDeleteUsers as a prop  } */}
       <DeleteUser onDeleteUsers={handleDeleteUsers} />
     </section>
   );

@@ -90,12 +90,14 @@ const Events = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     //updates list with new event
+    //state is the new event
     setEvents([...events, state]);
   };
 
   // Add new event
   const handleNewEvent = async (e) => {
     e.preventDefault();
+    //newEvent will contain new values for these properties
     const newEvent = {
       id: state.id,
       name: state.name,
@@ -105,6 +107,7 @@ const Events = () => {
     };
     console.log(newEvent);
 
+    //sending data to the server, and the server sends a response back
     const response = await fetch("http://localhost:4000/events", {
       method: "POST",
       headers: {
@@ -115,11 +118,15 @@ const Events = () => {
     });
     const content = await response.json();
 
+    //the response that we're getting back to the server is getting added
+    //to the events' list
     setEvents([...events, content]);
 
+    //calling the reducer and passing an object where type is clear form
     dispatch({ type: "clearForm" });
   };
-
+  //sending a req to the server to delete this event with this id
+  //eventId is getting passed to the server
   const handleDeleteEvents = async (eventId) => {
     const response = await fetch(`http://localhost:4000/events/${eventId}`, {
       method: "DELETE",
@@ -245,6 +252,7 @@ const Events = () => {
           <input type="submit" />
         </form>
       </div>
+      {/* //added DeleteEvent component and is passing handleDeleteEvents as a prop  */}
       <DeleteEvent onDeleteEvents={handleDeleteEvents} />
     </section>
   );
